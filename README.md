@@ -96,12 +96,6 @@ Parkinson's spectral biomarkers across seven independent laboratories without ar
 rejection. [Preprint]. https://doi.org/[forthcoming]
 ```
 
-## Contact
-
-Kristian Droste — kris@intomind.com
-
-ORCID: [0009-0008-4727-8962](https://orcid.org/0009-0008-4727-8962)
-
 ## License
 
 MIT
