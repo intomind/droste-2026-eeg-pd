@@ -15,10 +15,57 @@ This repository contains the analysis scripts used to produce the results in the
 ## Contents
 
 ```
-experiment1_analysis.py    # Spectral aging replication and sex differences analysis
+experiment1_lifespan.py        # Spectral aging, sex differences, alpha asymmetry
 experiment2_classification.py  # PD vs control LODO classification, confound controls,
-                               # and sensitivity analyses (frontal removal, gamma removal,
-                               # MoCA residualization, label permutation)
+                               # and sensitivity analyses
+```
+
+### experiment1_lifespan.py
+
+Spectral analysis across the lifespan (all 8,974 subjects):
+
+- Age–spectral correlation heatmap (channel x band, Bonferroni-corrected)
+- Posterior alpha power vs age (scatter + LOESS, per-dataset coloring)
+- Peak alpha frequency vs age
+- Per-dataset consistency forest plot
+- Sex differences heatmap (Cohen's d with bootstrap CIs)
+- Hemispheric alpha asymmetry and BDI depression correlation
+
+### experiment2_classification.py
+
+Cross-dataset Parkinson's classification (743 subjects, 7 datasets):
+
+- Leave-one-dataset-out (LODO) cross-validation
+- Stratified 5-fold CV (upper-bound baseline)
+- Age confound control (with/without age as feature)
+- Dataset confound control (dataset identity classifier + in-fold residualization)
+- Feature importance (logistic regression coefficients, random forest MDI)
+- ROC curves and confusion matrices
+
+With `--sensitivity` flag, also runs:
+
+- Frontal channel removal (drop Fp1, Fp2, Fz — tests ocular artifact contribution)
+- Gamma-band removal (drop gamma features — tests EMG contamination contribution)
+- MoCA cognitive covariate analysis (spectral-only vs spectral+MoCA vs MoCA-residualized)
+- Label permutation test (100 within-dataset permutations)
+
+## Usage
+
+```bash
+# Experiment 1: spectral aging and sex differences
+python experiment1_lifespan.py path/to/features.csv
+
+# Experiment 2: PD classification (core analyses only)
+python experiment2_classification.py path/to/features.csv
+
+# Experiment 2: including sensitivity analyses
+python experiment2_classification.py path/to/features.csv --sensitivity
+
+# Custom output directory
+python experiment2_classification.py path/to/features.csv -o path/to/output/
+
+# MoCA analysis requires catalog.db (auto-detected or specify manually)
+python experiment2_classification.py path/to/features.csv --sensitivity --catalog-db path/to/catalog.db
 ```
 
 ## Data
