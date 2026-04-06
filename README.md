@@ -6,7 +6,7 @@ Analysis code for:
 >
 > Kristian Droste, IntoMind, Inc.
 >
-> Preprint: [bioRxiv link forthcoming]
+> Preprint: [medRxiv link forthcoming]
 
 ## Overview
 
